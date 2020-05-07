@@ -41,6 +41,7 @@ disp('Tu dydis:')
 size(Tu)
 %15:
 lr = maxlinlr(Pu);
+disp(lr)
 %16:
 net = newlin(Pu, Tu, 0, maxlinlr(Pu));
 %17:

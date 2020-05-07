@@ -55,7 +55,7 @@ sunspot(n+1)
 sunspot(200+n)
 Tsu = net(Pu) % Neurono veikimo simuliacija
 figure(3), hold on;
-plot(sunspot((n+1):200+n, 1), Tu, 'r-o');
+plot(sunspot((n+1):200+n, 1), Tu, 'g-o');
 plot(sunspot((n+1):200+n, 1), Tsu, 'b-o');
 xlabel('Metai');
 ylabel('Demiu skaicius');
@@ -66,7 +66,7 @@ title(sprintf('Saules demiu prognozavimo kokybes patikrinimas %d-%d metams', 170
 % modelio verifikacija 1702-2014
 Ts = net(P);
 figure(4), hold on;
-plot(sunspot(n+1:315, 1), T, 'r-o');
+plot(sunspot(n+1:315, 1), T, 'g-o');
 plot(sunspot(n+1:315, 1), Ts, 'b-o');
 xlabel('Metai');
 ylabel('Demiu skaicius');
@@ -80,12 +80,12 @@ e = T - Ts
 figure(5);
 plot(sunspot(n+1:315), e, 'r-o');
 grid on;
-title(sprintf('Prognozes klaidos grafikas %d-2014 metams', 1700+n));
+title(sprintf('Prognozes klaidu grafikas %d-2014 metams', 1700+n));
 xlabel('Metai');
-ylabel('Demiu skaiciaus skirtumas tarp tikrosios ir prognozuojamos reiksmiu');
+ylabel('Prognozes klaida');
 % Prognozës klaidø histograma
 figure(6);
-hist(e);
+histogram(e);
 title('Prognozes klaidu histograma');
 xlabel('Prognozes klaidos reiksme');
 ylabel('Daznis');
