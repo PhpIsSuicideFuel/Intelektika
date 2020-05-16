@@ -124,11 +124,23 @@ def removeOutliers(dataf):
     return dataf
 
 
+def rangeNormalization(series, A, B):
+    for i, s in enumerate(series, start=0):
+        x = 1 + (s-A)*(10-1)/(B-A)
+        series[i] = x
+    # print(series)
+    return series
+
+
 df = pd.read_csv('wage.csv', delimiter=',')
+df = removeOutliers(df)
+
+
 dataColumn.df = df
 
 dataTypes = df.dtypes.to_list()
 headers = df.columns
+print(headers)
 columnList = list()
 
 dfNumeric = pd.DataFrame(columns=['Pavadinimas', 'Kiekis', 'Trukstamos reiksmes', 'Kardinalumas', 'Minimali reiksme',
@@ -149,30 +161,44 @@ for i in range(0, len(headers)):
         # columnList[i].showHistogram()
     else:
         dfCategorical = dfCategorical.append(line, ignore_index=True)
+A = dfNumeric.iloc[3, 4]
+B = dfNumeric.iloc[3, 5]
+print(A, B)
+series = df['wage']
+series = rangeNormalization(series, A, B)
+#df['wage'] = series
+print(series)
+df.to_csv(index=False, path_or_buf="test2.csv",
+          columns=['age', 'education', 'jobclass', 'wage', 'logwage', 'health_ins'])
+print(dfNumeric)
+print(A, B)
+
+
+# df['wage'].to_csv(index=True, path_or_buf="test.csv")
 
 # values converts it into a numpy array
-X = df.iloc[:, 10].values.reshape(-1, 1)
-# -1 means that calculate the dimension of rows, but have 1 column
-Y = df.iloc[:, 1].values.reshape(-1, 1)
-linear_regressor = LinearRegression()  # create object for the class
-linear_regressor.fit(X, Y)  # perform linear regression
-Y_pred = linear_regressor.predict(X)  # make predictions
+# X = df.iloc[:, 10].values.reshape(-1, 1)
+# # -1 means that calculate the dimension of rows, but have 1 column
+# Y = df.iloc[:, 1].values.reshape(-1, 1)
+# linear_regressor = LinearRegression()  # create object for the class
+# linear_regressor.fit(X, Y)  # perform linear regression
+# Y_pred = linear_regressor.predict(X)  # make predictions
 
-# plt.scatter(X, Y)
-# plt.xlabel("Wage")
-# plt.ylabel("Age")
-# plt.plot(X, Y_pred, color='red')
+# # plt.scatter(X, Y)
+# # plt.xlabel("Wage")
+# # plt.ylabel("Age")
+# # plt.plot(X, Y_pred, color='red')
 
-# showBarPlot()
-# columnList[10].showHistogram()
-# boxplot = df.boxplot(by='health_ins', column=['age'])
-# boxplot.set_ylabel("Age", weight='bold', size=12)
-# boxplot.set_xlabel("Health insurance", weight='bold', size=12)
-df = removeOutliers(df)
-print(df)
-corrMatrix = df[['year', 'age', 'wage']].corr()
-sn.heatmap(corrMatrix, annot=True)
-# print(dfNumeric)
-# print(dfCategorical)
+# # showBarPlot()
+# # columnList[10].showHistogram()
+# # boxplot = df.boxplot(by='health_ins', column=['age'])
+# # boxplot.set_ylabel("Age", weight='bold', size=12)
+# # boxplot.set_xlabel("Health insurance", weight='bold', size=12)
 
-plt.show()
+# print(df)
+# corrMatrix = df[['year', 'age', 'wage']].corr()
+# sn.heatmap(corrMatrix, annot=True)
+# # print(dfNumeric)
+# # print(dfCategorical)
+
+# plt.show()

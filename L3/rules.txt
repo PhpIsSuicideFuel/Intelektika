@@ -1,0 +1,22 @@
+mazas stabdymas:
+jeigu mazas greitis, didelis atstumas
+jeigu mazas trinties_koeficientas
+jeigu mazas greitis, vidutinis atstumas, didelis trinties_koeficientas
+jeigu didelis greitis, ne mazas atstumas, didelis trinties_koeficientas
+
+vidutinis stabdymas:
+jeigu mazas greitis, mazas atstumas
+jeigu vidutinis greitis, vidutinis atstumas
+jeigu didelis greitis, didelis atstumas
+jeigu mazas greitis, vidutinis atstumas, vidutinis trinties_koeficientas
+jeigu vidutinis greitis, mazas atstumas, didelis trinties_koeficientas
+jeigu didelis greitis, vidutinis atstumas, vidutinis trinties_koeficientas
+
+didelis stabdymas:
+jeigu didelis greitis, mazas atstumas
+jeigu vidutinis greitis, mazas atstumas, vidutinis trinties_koeficientas
+
+
+greitis - mazas, vidutinis, didelis
+atstumas - mazas, vidutinis, didelis
+trinties_koeficientas - mazas, vidutinis, didelis
